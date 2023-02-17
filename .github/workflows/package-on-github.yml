@@ -1,0 +1,13 @@
+name: Publication du package sur Github
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Publication du package sur Github
+    uses: medhead-ers/ci-cd-templates/.github/workflows/java_package-on-github.yml@main
+
+    permissions:
+      contents: read
+      packages: write

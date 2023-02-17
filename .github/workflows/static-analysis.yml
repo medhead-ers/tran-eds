@@ -1,0 +1,13 @@
+name: Analyse Statique avec SonarCloud
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  static-analysis:
+    name: Analyse statique SonarCloud (${{ github.event.repository.name }})
+    uses: medhead-ers/ci-cd-templates/.github/workflows/java_sonarcloud-static-analysis.yml@main
+    secrets: inherit

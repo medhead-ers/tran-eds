@@ -1,0 +1,7 @@
+name: Build et Test
+on: [push]
+
+jobs:
+    build-and-test:
+        name: Build et Test (${{ github.event.repository.name }})
+        uses: medhead-ers/ci-cd-templates/.github/workflows/java_build-and-test.yml@main
