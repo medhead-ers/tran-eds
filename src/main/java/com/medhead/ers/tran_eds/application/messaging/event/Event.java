@@ -11,5 +11,5 @@ import java.util.LinkedHashMap;
 @NoArgsConstructor
 public class Event {
     protected AvailableEvent eventType;
-    protected LinkedHashMap<String, String> metadata;
+    protected LinkedHashMap<String, Object> metadata;
 }

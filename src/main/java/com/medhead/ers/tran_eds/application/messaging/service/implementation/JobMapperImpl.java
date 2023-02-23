@@ -16,4 +16,14 @@ public class JobMapperImpl implements JobMapper {
     private String getJobNameFromEvent(Event event){
         return  event.getEventType() + "Job";
     }
+
+    public boolean checkIfJobExistForEvent(Event event){
+        try {
+            Class.forName(Job.class.getPackageName() + "." + getJobNameFromEvent(event));
+            return true;
+        }
+        catch (ClassNotFoundException e){
+            return false;
+        }
+    }
 }

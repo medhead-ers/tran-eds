@@ -5,4 +5,5 @@ import com.medhead.ers.tran_eds.application.messaging.job.Job;
 
 public interface JobMapper {
     Job createJobFromEvent(Event event) throws Exception;
+    boolean checkIfJobExistForEvent(Event event);
 }
