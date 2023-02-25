@@ -9,7 +9,7 @@ import com.medhead.ers.tran_eds.domain.valueObject.MedicalSpeciality;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-public class EmergencyConverter {
+public interface EmergencyConverter {
     public static Emergency convertFromEmergencyCreatedEvent(Event event){
         LinkedHashMap<String, Object> emergency = (LinkedHashMap<String, Object>) event.getMetadata().get("emergency");
         LinkedHashMap<String, Double> gpsCoordinates = (LinkedHashMap<String, Double>) emergency.get("gpsCoordinates");

@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-public class HospitalConverter {
+public interface HospitalConverter {
     public static Hospital convertFromWebServiceResponse(LinkedHashMap<String, Object> hospital){
         LinkedHashMap<String, Double> gpsCoordinates = (LinkedHashMap<String, Double>) hospital.get("gpsCoordinates");
         LinkedHashMap<String, String> address = (LinkedHashMap<String, String>) hospital.get("address");
