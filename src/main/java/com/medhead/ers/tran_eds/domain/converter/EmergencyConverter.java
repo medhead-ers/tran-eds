@@ -1,28 +1,20 @@
-package com.medhead.ers.tran_eds.application.messaging.dto;
+package com.medhead.ers.tran_eds.domain.converter;
+
 import com.medhead.ers.tran_eds.application.messaging.event.Event;
+import com.medhead.ers.tran_eds.domain.dto.Emergency;
 import com.medhead.ers.tran_eds.domain.valueObject.EmergencyStatus;
 import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
 import com.medhead.ers.tran_eds.domain.valueObject.MedicalSpeciality;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
-@Getter
-@AllArgsConstructor
-public class EmergencyDTO {
-    private final UUID id;
-    private final String description;
-    private final String patientId;
-    private final GPSCoordinates gpsCoordinates;
-    private final MedicalSpeciality medicalSpeciality;
-    private final EmergencyStatus status;
 
-    public static EmergencyDTO mapFromEmergencyCreatedEvent(Event event){
+public class EmergencyConverter {
+    public static Emergency convertFromEmergencyCreatedEvent(Event event){
         LinkedHashMap<String, Object> emergency = (LinkedHashMap<String, Object>) event.getMetadata().get("emergency");
         LinkedHashMap<String, Double> gpsCoordinates = (LinkedHashMap<String, Double>) emergency.get("gpsCoordinates");
 
-        return new EmergencyDTO(
+        return new Emergency(
                 UUID.fromString(emergency.get("id").toString()),
                 emergency.get("description").toString(),
                 emergency.get("patientId").toString(),
