@@ -1,6 +1,7 @@
 package com.medhead.ers.tran_eds.units;
 
 import com.medhead.ers.tran_eds.application.messaging.exception.CannotCreateEventFromJSONMessageException;
+import com.medhead.ers.tran_eds.application.messaging.exception.CannotProcessJobException;
 import com.medhead.ers.tran_eds.application.messaging.redis.config.MessageListener;
 import com.medhead.ers.tran_eds.application.messaging.service.implementation.JobMapperImpl;
 import com.medhead.ers.tran_eds.application.messaging.service.implementation.RedisMessageToEventConverter;
@@ -15,15 +16,14 @@ import static java.util.UUID.randomUUID;
 public class MessageListenerTest {
 
     @Test
-    void test_CannotProcessSayHelloJobFromBecauseInvalidJsonMessage(CapturedOutput output){
+    void test_CannotProcessSayHelloJobFromBecauseInvalidJsonMessage(CapturedOutput output) throws CannotProcessJobException {
         // Given
         MessageListener messageListener = new MessageListener(new JobMapperImpl(), new RedisMessageToEventConverter());
         String userName = String.valueOf(randomUUID());
         String invalidMessage = "{\r\n  \"eventType\" : \"InvalidMessage\",\r\n  \"metadata\" : {\r\n    \"userName\" : \""+userName+"\"\r\n  }\r\n}";
+        // When
+        messageListener.receiveMessage(invalidMessage);
         // Then
-        Assertions.assertThrows(CannotCreateEventFromJSONMessageException.class, () -> {
-            // When
-            messageListener.receiveMessage(invalidMessage);
-        });
+        Assertions.assertTrue(output.getAll().contains("Message reçu de type inconnu ou malformé (pas d'événement éligible associé). Le message sera ignoré."));
     }
 }
