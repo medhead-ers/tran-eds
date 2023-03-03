@@ -10,6 +10,7 @@ import com.medhead.ers.tran_eds.domain.service.definition.GeoMatrixService;
 import com.medhead.ers.tran_eds.domain.service.definition.HospitalService;
 import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,12 +19,12 @@ import java.util.List;
 @Service
 public class EmergencyDispatcherImpl implements EmergencyDispatcher {
     @Autowired
-    HospitalService hospitalService;
+    private HospitalService hospitalService;
     @Autowired
-    GeoMatrixService geoMatrixService;
-    @Autowired
-    MessagePublisher messagePublisher;
-    List<Hospital> hospitalsList;
+    @Qualifier("TrigonometryGeoMatrixService")
+    private GeoMatrixService geoMatrixService;
+    @Autowired private MessagePublisher messagePublisher;
+    private List<Hospital> hospitalsList;
 
     @Override
     public Hospital dispatchEmergency(Emergency emergency) throws IOException, MessagePublicationFailException {

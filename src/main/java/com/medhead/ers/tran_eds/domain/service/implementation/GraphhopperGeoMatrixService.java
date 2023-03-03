@@ -6,15 +6,20 @@ import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
 
-@Service
+@Service("GraphhopperGeoMatrixService")
 public class GraphhopperGeoMatrixService implements GeoMatrixService {
     private final OkHttpClient client = new OkHttpClient();
+    @Autowired
+    @Qualifier("TrigonometryGeoMatrixService")
+    private GeoMatrixService fallBackGeoMatrixService;
     @Value("${graphhoper.api.matrix}")
     private String graphhopperMatrixAPIUrl;
     @Value("${graphhoper.api.secure_key}")
@@ -41,19 +46,8 @@ public class GraphhopperGeoMatrixService implements GeoMatrixService {
             return new TreeMap<>(GPSCoordinatesToDistanceMap).firstEntry().getValue();
         }
         catch (Exception exception){
-            return fallBackFindNearestPoint(fromPoint, toPoints);
+            return fallBackGeoMatrixService.findNearestPoint(fromPoint, toPoints);
         }
-    }
-
-    private GPSCoordinates fallBackFindNearestPoint(GPSCoordinates fromPoint, List<GPSCoordinates> toPoints) {
-        Map<Double, GPSCoordinates> GPSCoordinatesToTrigonometricDistanceMap = new HashMap<>();
-        for (GPSCoordinates toPoint: toPoints) {
-            double latitude = fromPoint.getLatitude() - toPoint.getLatitude();
-            double longitude = fromPoint.getLongitude() - toPoint.getLongitude();
-            double distance = Math.sqrt(Math.pow(latitude, 2) + Math.pow(longitude, 2));
-            GPSCoordinatesToTrigonometricDistanceMap.put(distance, toPoint);
-        }
-        return new TreeMap<>(GPSCoordinatesToTrigonometricDistanceMap).firstEntry().getValue();
     }
 
     private String buildUrl (GPSCoordinates fromPoint, List<GPSCoordinates> toPoints ) {
