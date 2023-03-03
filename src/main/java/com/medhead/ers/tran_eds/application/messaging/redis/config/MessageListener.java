@@ -36,7 +36,7 @@ public class MessageListener {
             try {
                 HashMap<String, Object> receivedMessage = (HashMap<String, Object>) new ObjectMapper().readValue(message, Object.class);
                 String eventType = (String) receivedMessage.get("eventType");
-                if (eventType == null) {
+                if (eventType.isEmpty()) {
                     throw new IOException();
                 }
                 logger.info("Message reçu de type inconnu ("+eventType+") - Pas d'événement éligible associé. Le message sera ignoré.");
@@ -54,6 +54,7 @@ public class MessageListener {
                 Job job = jobMapper.createJobFromEvent(event);
                 logger.info("Traitement de l'événement de type : " + event.getEventType().toString() +". Job processor : "+ job.getClass().getSimpleName());
                 job.process();
+                logger.info("Fin de traitement de l'événement de type : " + event.getEventType().toString() +" - Événement traité avec succès.");
             } catch (Exception exception) {
                 throw new CannotProcessJobException(exception);
             }

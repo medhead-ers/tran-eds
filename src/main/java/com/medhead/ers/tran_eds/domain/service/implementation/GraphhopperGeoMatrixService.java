@@ -30,7 +30,7 @@ public class GraphhopperGeoMatrixService implements GeoMatrixService {
         Request request = new Request.Builder().url(buildUrl(fromPoint, toPoints)).build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful() && response.body() != null) {
+            if (!response.isSuccessful()) {
                 throw new IOException("Une erreur est survenue lors de l'appel à Grapphopper Matrix API");
             }
             LinkedHashMap<String, Object> grapphopperAPIResponse = (LinkedHashMap<String, Object>) new ObjectMapper().readValue(response.body().string(), Object.class);

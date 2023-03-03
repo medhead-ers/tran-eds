@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class HospitalServiceImpl implements HospitalService {
     private final OkHttpClient client = new OkHttpClient();
-    @Value("${medhead.api.hms}")
+    @Value("${medhead.hms.api.hospitals}")
     private String HMSAPIUrl;
 
     @Override
