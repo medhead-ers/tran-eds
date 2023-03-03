@@ -31,14 +31,14 @@ import static com.medhead.ers.tran_eds.utils.FileReader.readFile;
 @DirtiesContext
 @ActiveProfiles("test")
 @ExtendWith(OutputCaptureExtension.class)
-public class EmergencyDispatchedJobProcessorTest {
+class EmergencyDispatchedJobProcessorTest {
 
     private final static String MOCK_MESSAGE_RESOURCES_PATH = "src/test/resources/mock/message/";
     @Autowired
     private MessageListener messageListener;
     private static MockWebServer mockWebServer;
     @Value("${medhead.hms.api.hospitals}")
-    private String HMSAPIUrl;
+    private String medheadHMSAPIUrl;
     @Value("${graphhoper.api.matrix}")
     private String grapphopperMatrixUrl;
 

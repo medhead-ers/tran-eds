@@ -1,5 +1,6 @@
 package com.medhead.ers.tran_eds.domain.service.implementation;
 
+import com.medhead.ers.tran_eds.application.messaging.exception.MessagePublicationFailException;
 import com.medhead.ers.tran_eds.application.messaging.message.factory.MessageFactory;
 import com.medhead.ers.tran_eds.application.messaging.service.definition.MessagePublisher;
 import com.medhead.ers.tran_eds.domain.dto.Emergency;
@@ -11,6 +12,7 @@ import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -24,7 +26,7 @@ public class EmergencyDispatcherImpl implements EmergencyDispatcher {
     List<Hospital> hospitalsList;
 
     @Override
-    public Hospital dispatchEmergency(Emergency emergency) throws Exception {
+    public Hospital dispatchEmergency(Emergency emergency) throws IOException, MessagePublicationFailException {
         List<Hospital> availableHospitalsList = filterHospitalByCapabilitiesForEmergency(emergency, getFreshHospitalsList());
         Hospital nearestAvailableHospital = findNearestHospitalForEmergency(emergency, availableHospitalsList);
         messagePublisher.publish(MessageFactory.createEmergencyDispatchedMessage(emergency,nearestAvailableHospital));
@@ -38,7 +40,7 @@ public class EmergencyDispatcherImpl implements EmergencyDispatcher {
                 .findFirst().orElseThrow();
     }
 
-    private List<Hospital> getFreshHospitalsList() throws Exception {
+    private List<Hospital> getFreshHospitalsList() throws IOException {
         return hospitalService.getAllHospitals();
     }
 

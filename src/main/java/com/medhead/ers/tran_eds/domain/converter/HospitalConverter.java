@@ -5,13 +5,10 @@ import com.medhead.ers.tran_eds.domain.valueObject.Address;
 import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
 import com.medhead.ers.tran_eds.domain.valueObject.MedicalSpeciality;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.UUID;
+import java.util.*;
 
 public interface HospitalConverter {
-    public static Hospital convertFromWebServiceResponse(LinkedHashMap<String, Object> hospital){
+    public static Hospital convertFromWebServiceResponse(Map<String, Object> hospital){
         LinkedHashMap<String, Double> gpsCoordinates = (LinkedHashMap<String, Double>) hospital.get("gpsCoordinates");
         LinkedHashMap<String, String> address = (LinkedHashMap<String, String>) hospital.get("address");
         ArrayList<String> medicalSpecialities = (ArrayList<String>) hospital.get("medicalSpecialities");

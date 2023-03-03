@@ -19,11 +19,11 @@ import java.util.List;
 public class HospitalServiceImpl implements HospitalService {
     private final OkHttpClient client = new OkHttpClient();
     @Value("${medhead.hms.api.hospitals}")
-    private String HMSAPIUrl;
+    private String medheadHMSAPIUrl;
 
     @Override
-    public List<Hospital> getAllHospitals() throws Exception {
-        Request request = new Request.Builder().url(HMSAPIUrl).build();
+    public List<Hospital> getAllHospitals() throws IOException {
+        Request request = new Request.Builder().url(medheadHMSAPIUrl).build();
 
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful())

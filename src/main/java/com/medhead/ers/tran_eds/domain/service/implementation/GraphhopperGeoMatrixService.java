@@ -6,8 +6,6 @@ import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +15,12 @@ import java.util.*;
 @Service
 public class GraphhopperGeoMatrixService implements GeoMatrixService {
     private final OkHttpClient client = new OkHttpClient();
-    private final Logger logger = LoggerFactory.getLogger(GraphhopperGeoMatrixService.class);
     @Value("${graphhoper.api.matrix}")
-    private String GraphhopperMatrixAPIUrl;
+    private String graphhopperMatrixAPIUrl;
     @Value("${graphhoper.api.secure_key}")
-    private String GrapphopperAPISecureKey;
+    private String grapphopperAPISecureKey;
     @Value("${graphhoper.api.mode:distances}")
-    private String GrapphopperAPIMode;
+    private String grapphopperAPIMode;
 
     @Override
     public GPSCoordinates findNearestPoint(GPSCoordinates fromPoint, List<GPSCoordinates> toPoints) {
@@ -34,7 +31,7 @@ public class GraphhopperGeoMatrixService implements GeoMatrixService {
                 throw new IOException("Une erreur est survenue lors de l'appel à Grapphopper Matrix API");
             }
             LinkedHashMap<String, Object> grapphopperAPIResponse = (LinkedHashMap<String, Object>) new ObjectMapper().readValue(response.body().string(), Object.class);
-            ArrayList<ArrayList<Integer>> distancesArrayResult = (ArrayList<ArrayList<Integer>>) grapphopperAPIResponse.get(GrapphopperAPIMode);
+            ArrayList<ArrayList<Integer>> distancesArrayResult = (ArrayList<ArrayList<Integer>>) grapphopperAPIResponse.get(grapphopperAPIMode);
             Map<Integer, GPSCoordinates> GPSCoordinatesToDistanceMap = new HashMap<>();
             int index=0;
             for (GPSCoordinates toPoint: toPoints) {
@@ -61,13 +58,13 @@ public class GraphhopperGeoMatrixService implements GeoMatrixService {
 
     private String buildUrl (GPSCoordinates fromPoint, List<GPSCoordinates> toPoints ) {
         String fromPointUrlFrag="&from_point="+fromPoint.getLatitude() + "%2C" +fromPoint.getLongitude();
-        String outArrayUrlFrag = "&out_array="+GrapphopperAPIMode;
-        String apiKeyUrlFrag = "&key="+GrapphopperAPISecureKey;
+        String outArrayUrlFrag = "&out_array="+ grapphopperAPIMode;
+        String apiKeyUrlFrag = "&key="+ grapphopperAPISecureKey;
 
         StringBuilder toPointsUrlFrag = new StringBuilder();
         for (GPSCoordinates toPoint: toPoints) {
             toPointsUrlFrag.append("&to_point=").append(toPoint.getLatitude()).append("%2C").append(toPoint.getLongitude());
         }
-        return GraphhopperMatrixAPIUrl + "?"+ fromPointUrlFrag + toPointsUrlFrag +  outArrayUrlFrag + apiKeyUrlFrag;
+        return graphhopperMatrixAPIUrl + "?"+ fromPointUrlFrag + toPointsUrlFrag +  outArrayUrlFrag + apiKeyUrlFrag;
     }
 }
