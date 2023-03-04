@@ -23,8 +23,8 @@ public class EmergencyDispatcherImpl implements EmergencyDispatcher {
     @Autowired
     @Qualifier("TrigonometryGeoMatrixService")
     private GeoMatrixService geoMatrixService;
-    @Autowired private MessagePublisher messagePublisher;
-    private List<Hospital> hospitalsList;
+    @Autowired
+    private MessagePublisher messagePublisher;
 
     @Override
     public Hospital dispatchEmergency(Emergency emergency) throws IOException, MessagePublicationFailException {
