@@ -14,6 +14,7 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 public class MessageListenerTest {
 
     private final MessageListener messageListener = new MessageListener(new JobMapperImpl(), new RedisMessageToEventConverter());
+
     @Test
     void test_CannotProcessJobBecauseUnknownMessage(CapturedOutput output) throws CannotProcessJobException {
         // Given

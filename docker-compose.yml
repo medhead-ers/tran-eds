@@ -17,7 +17,7 @@ services:
       - "traefik.http.routers.tran_eds.rule=Host(`medhead.localhost`) && PathPrefix(`/eds`)"
       - "traefik.http.routers.tran_eds.middlewares=eds-stripprefix"
       - "traefik.http.middlewares.eds-stripprefix.stripprefix.prefixes=/eds"
-      - "traefik.http.services.tran_eds.loadbalancer.server.port=8080"
+      - "traefik.http.services.tran_eds.loadbalancer.server.port=9040"
 
   # Redis dependency
   redis:
