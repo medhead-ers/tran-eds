@@ -24,6 +24,8 @@ public class WelcomeController {
         map.put("appName", environment.getProperty("spring.application.name"));
         map.put("javaVersion", JavaVersion.getJavaVersion().toString());
         map.put("springVersion", SpringVersion.getVersion());
+        map.put("redisHost", environment.getProperty("spring.redis.host"));
+        map.put("grapphopper", environment.getProperty("graphhoper.api.secure_key"));
         return map;
     }
 }
