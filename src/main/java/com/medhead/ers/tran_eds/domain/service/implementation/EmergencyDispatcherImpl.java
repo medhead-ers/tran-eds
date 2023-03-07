@@ -21,7 +21,7 @@ public class EmergencyDispatcherImpl implements EmergencyDispatcher {
     @Autowired
     private HospitalService hospitalService;
     @Autowired
-    @Qualifier("TrigonometryGeoMatrixService")
+    @Qualifier("GraphhopperGeoMatrixService")
     private GeoMatrixService geoMatrixService;
     @Autowired
     private MessagePublisher messagePublisher;
