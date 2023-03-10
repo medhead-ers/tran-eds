@@ -1,0 +1,1 @@
+{"eventType":"EmergencyCreated","metadata":{"emergency":{"id":"236d6a2e-90ff-4bcf-ab69-57e3f23165cd","description":"Test Emergency","patientId":"21937f70-4d5f-4636-bab6-ccba0bedd5e9","gpsCoordinates":{"longitude":-0.05285419557847499,"latitude":51.66011107778787},"medicalSpeciality":"OPHTHALMOLOGY","status":"PENDING"}}}
