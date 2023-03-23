@@ -1,4 +1,4 @@
-package com.medhead.ers.tran_eds;
+package com.medhead.ers.tran_eds_test;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.containers.GenericContainer;

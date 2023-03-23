@@ -1,4 +1,4 @@
-package com.medhead.ers.tran_eds.units;
+package com.medhead.ers.tran_eds_test.units;
 
 import com.medhead.ers.tran_eds.domain.service.implementation.TrigonometryGeoMatrixService;
 import com.medhead.ers.tran_eds.domain.valueObject.GPSCoordinates;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class TrigonometryGeoMatrixServiceTest {
+class TrigonometryGeoMatrixServiceTest {
     private final TrigonometryGeoMatrixService trigonometryGeoMatrixService = new TrigonometryGeoMatrixService();
 
     @Test

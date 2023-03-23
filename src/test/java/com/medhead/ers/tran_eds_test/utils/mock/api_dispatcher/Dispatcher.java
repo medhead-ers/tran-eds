@@ -1,4 +1,4 @@
-package com.medhead.ers.tran_eds.utils.mock.api_dispatcher;
+package com.medhead.ers.tran_eds_test.utils.mock.api_dispatcher;
 
 import okhttp3.mockwebserver.MockResponse;
 import org.springframework.http.HttpHeaders;

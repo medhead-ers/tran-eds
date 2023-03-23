@@ -1,4 +1,4 @@
-package com.medhead.ers.tran_eds.units;
+package com.medhead.ers.tran_eds_test.units;
 
 import com.medhead.ers.tran_eds.application.messaging.exception.CannotProcessJobException;
 import com.medhead.ers.tran_eds.application.messaging.redis.config.MessageListener;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
 @ExtendWith(OutputCaptureExtension.class)
-public class MessageListenerTest {
+class MessageListenerTest {
 
     private final MessageListener messageListener = new MessageListener(new JobMapperImpl(), new RedisMessageToEventConverter());
 

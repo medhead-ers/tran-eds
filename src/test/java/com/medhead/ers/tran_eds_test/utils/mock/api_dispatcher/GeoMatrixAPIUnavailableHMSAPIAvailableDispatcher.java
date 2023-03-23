@@ -1,16 +1,16 @@
-package com.medhead.ers.tran_eds.utils.mock.api_dispatcher;
+package com.medhead.ers.tran_eds_test.utils.mock.api_dispatcher;
 
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.jetbrains.annotations.NotNull;
 
-public class AllAPIAvailableDispatcher extends Dispatcher {
+public class GeoMatrixAPIUnavailableHMSAPIAvailableDispatcher extends Dispatcher {
     @NotNull
     @Override
     public MockResponse dispatch(@NotNull RecordedRequest request) {
         try {
             if (request.getPath().contains("/grapphopper/matrix")) {
-                    return createResponseWithJsonContent(readFile(MOCK_API_RESOURCES_PATH+"graphhopper_get_matrix.json"));
+                    return createServiceUnavailableResponse();
             }
             else if (request.getPath().equals("/hms/hospitals")) {
                 return createResponseWithJsonContent(readFile(MOCK_API_RESOURCES_PATH+"hms_get_all_hospitals.json"));
