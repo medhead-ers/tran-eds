@@ -1,11 +1,13 @@
-package com.medhead.ers.tran_eds.integration;
+package com.medhead.ers.tran_eds_test.integration;
 
-import com.medhead.ers.tran_eds.TestWithRedis;
+import com.medhead.ers.tran_eds.TranEdsApplication;
+import com.medhead.ers.tran_eds_test.TestWithRedis;
 import com.medhead.ers.tran_eds.application.messaging.exception.CannotProcessJobException;
 import com.medhead.ers.tran_eds.application.messaging.redis.config.MessageListener;
-import com.medhead.ers.tran_eds.utils.mock.api_dispatcher.AllAPIAvailableDispatcher;
-import com.medhead.ers.tran_eds.utils.mock.api_dispatcher.AllAPIUnavailableDispatcher;
-import com.medhead.ers.tran_eds.utils.mock.api_dispatcher.GeoMatrixAPIUnavailableHMSAPIAvailableDispatcher;
+import com.medhead.ers.tran_eds_test.utils.mock.api_dispatcher.AllAPIAvailableDispatcher;
+import com.medhead.ers.tran_eds_test.utils.mock.api_dispatcher.AllAPIUnavailableDispatcher;
+import com.medhead.ers.tran_eds_test.utils.mock.api_dispatcher.GeoMatrixAPIUnavailableHMSAPIAvailableDispatcher;
+import com.medhead.ers.tran_eds_test.utils.FileReader;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.test.annotation.DirtiesContext;
@@ -23,8 +26,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.medhead.ers.tran_eds.utils.FileReader.readFile;
-
+@SpringBootTest(classes = TranEdsApplication.class)
 @DirtiesContext
 @ActiveProfiles("test")
 @ExtendWith(OutputCaptureExtension.class)
@@ -60,7 +62,7 @@ class EmergencyCreatedJobProcessorTest extends TestWithRedis {
         List<String> messagesThatShouldBePublishedWhenJobSuccess = Arrays.asList("EmergencyDispatchedMessage");
 
         // Given
-        String emergencyCreatedMessageFromFile = readFile(MOCK_MESSAGE_RESOURCES_PATH + "emergency_created.message");
+        String emergencyCreatedMessageFromFile = FileReader.readFile(MOCK_MESSAGE_RESOURCES_PATH + "emergency_created.message");
         // Then
         Assertions.assertDoesNotThrow( ()-> {
             // When
@@ -83,7 +85,7 @@ class EmergencyCreatedJobProcessorTest extends TestWithRedis {
         List<String> messagesThatShouldBePublishedWhenJobSuccess = Arrays.asList("EmergencyDispatchedMessage");
 
         // Given
-        String emergencyCreatedMessageFromFile = readFile(MOCK_MESSAGE_RESOURCES_PATH + "emergency_created.message");
+        String emergencyCreatedMessageFromFile = FileReader.readFile(MOCK_MESSAGE_RESOURCES_PATH + "emergency_created.message");
         // Then
         Assertions.assertDoesNotThrow( ()-> {
             // When
@@ -103,7 +105,7 @@ class EmergencyCreatedJobProcessorTest extends TestWithRedis {
         mockWebServer.setDispatcher(new AllAPIUnavailableDispatcher());
         String eventName = "EmergencyCreated";
         // Given
-        String emergencyCreatedMessageFromFile = readFile(MOCK_MESSAGE_RESOURCES_PATH + "emergency_created.message");
+        String emergencyCreatedMessageFromFile = FileReader.readFile(MOCK_MESSAGE_RESOURCES_PATH + "emergency_created.message");
         // Then
         Assertions.assertThrows(CannotProcessJobException.class, () -> {
             // When
