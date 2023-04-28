@@ -34,3 +34,7 @@ build/
 
 ### Windows ###
 desktop.ini
+
+### Local ###
+/src/main/resources/application-local.properties
+/.env

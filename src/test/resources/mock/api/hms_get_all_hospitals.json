@@ -1,0 +1,107 @@
+[
+  {
+    "id": "44379a27-1653-45ad-a025-1b50994d4d14",
+    "name": "Hôpital royal de Londres",
+    "code": "HLRWR",
+    "address": {
+      "numberAndStreetName": "Whitechapel Rd",
+      "addressComplement": null,
+      "city": "London",
+      "postCode": "E1 1FR",
+      "country": "United Kingdom"
+    },
+    "gpsCoordinates": {
+      "longitude": -0.05958983237779776,
+      "latitude": 51.51746719004866
+    },
+    "medicalSpecialities": [
+      "OPHTHALMOLOGY",
+      "CARDIOLOGY"
+    ],
+    "availableEmergencyBedrooms": 10
+  },
+  {
+    "id": "6b9833a9-1b06-4a2e-9293-906afd899cad",
+    "name": "Barts Health NHS Trust",
+    "code": "HSNHS",
+    "address": {
+      "numberAndStreetName": "A501 Road",
+      "addressComplement": null,
+      "city": "London",
+      "postCode": "E1 EBA",
+      "country": "United Kingdom"
+    },
+    "gpsCoordinates": {
+      "longitude": -0.1425965117175789,
+      "latitude": 51.52368647004438
+    },
+    "medicalSpecialities": [
+      "DIAGNOSTIC",
+      "OPHTHALMOLOGY",
+      "NEUROPATHOLOGY"
+    ],
+    "availableEmergencyBedrooms": 5
+  },
+  {
+    "id": "2a021aa4-5c54-4892-ae5f-340f4b948f2a",
+    "name": "St Thomas' Hospital",
+    "code": "STTHS",
+    "address": {
+      "numberAndStreetName": "Westminster Bridge Road",
+      "addressComplement": null,
+      "city": "London",
+      "postCode": "SE1 7EH",
+      "country": "United Kingdom"
+    },
+    "gpsCoordinates": {
+      "longitude": -0.17310874839511742,
+      "latitude": 51.52728944582913
+    },
+    "medicalSpecialities": [
+      "IMMUNOLOGY",
+      "OPHTHALMOLOGY",
+      "CARDIOLOGY"
+    ],
+    "availableEmergencyBedrooms": 5
+  },
+  {
+    "id": "2a025aa4-5c54-4890-ae5f-340f4b948f2a",
+    "name": "MockHospital",
+    "code": "MKNHS",
+    "address": {
+      "numberAndStreetName": "Mock Road",
+      "addressComplement": null,
+      "city": "London",
+      "postCode": "SE0 2FA",
+      "country": "United Kingdom"
+    },
+    "gpsCoordinates": {
+      "longitude": -0.5882507947676816,
+      "latitude": 51.658123047426855
+    },
+    "medicalSpecialities": [
+      "IMMUNOLOGY"
+    ],
+    "availableEmergencyBedrooms": 3
+  },
+  {
+    "id": "2a025aa4-5c54-4890-ae5f-340f4b948f2a",
+    "name": "AnotherMockHospital",
+    "code": "MK2HS",
+    "address": {
+      "numberAndStreetName": "Mock Road",
+      "addressComplement": null,
+      "city": "London",
+      "postCode": "SE0 2FA",
+      "country": "United Kingdom"
+    },
+    "gpsCoordinates": {
+      "longitude": -0.5882507947676816,
+      "latitude": 51.658123047426855
+    },
+    "medicalSpecialities": [
+      "OPHTHALMOLOGY"
+    ],
+    "availableEmergencyBedrooms": 0
+  }
+]
