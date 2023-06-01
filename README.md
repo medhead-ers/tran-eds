@@ -46,6 +46,12 @@ mvn clean test
 
 Il est à noter que pour certain test, le service docker doit être démarré sur la machine afin de pouvoir créer les conteneurs à la volée. Plus d'info :  https://www.testcontainers.org/features/creating_container/.
 
+#### Tests de performance avec JMeter
+Les tests de performances peuvent être lancés à l'aide du profil "performanceTest".
+
+```shell
+mvn clean test -P performanceTest
+```
 
 ## GitHub Actions CI/CD Pipelines
 
