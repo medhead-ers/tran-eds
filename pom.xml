@@ -12,7 +12,7 @@
 	<!-- PROPERTIES  -->
 	<properties>
 		<!--À configurer pour chaque micro-service -->
-		<revision>1.0.0</revision>
+		<revision>1.0.1</revision>
 		<service.artifactid>tran_eds</service.artifactid>
 		<service.github.package.url>https://maven.pkg.github.com/medhead-ers/tran-eds</service.github.package.url>
 
